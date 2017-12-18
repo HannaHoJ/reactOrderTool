@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom';
 import './Nav.css';
 
-export class Nav extends Component {
+
+class Nav extends Component {
 	render() {
 		return (
-			<div>Lets Navigate around a bit!</div>
+			<div>
+				<div>Lets Navigate around a bit!</div>
+				<nav>
+					<ul>
+						<li><Link to='/'>Home</Link></li>
+						<li><Link to='/categories'>categories</Link></li>
+						<li><Link to='/cart'>cart</Link></li>
+					</ul>
+				</nav>
+			</div>
+			
 		);
 	}
 }
+
+export default Nav;

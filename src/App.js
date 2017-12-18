@@ -19,10 +19,13 @@ class App extends Component {
     return (
       <div className="App">
         {/* NavComponent */}
+        <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/products" component={Products} />
+        {/* cart has to be /:user/cart */}
+          <Route exact path="/cart" component={Cart} />
           <Route component={NotFound} />
         </Switch>
       </div>
