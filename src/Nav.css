@@ -1,3 +1,20 @@
-ul li {
+#root {
+	/* width and height include content, padding and border */
+	box-sizing: border-box;
+}
+
+nav{
+	background: lightgrey;
+	padding: 10px;
+}
+
+nav ul {
 	list-style-type: none;
+	text-align: right;	
+}
+
+nav ul li {
+	display: inline;
+	margin: 0 12px 0 12px;
+
 }
