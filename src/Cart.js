@@ -1,6 +1,47 @@
 import React, { Component } from 'react';
 import './Cart.css';
 
+var order = {
+	"id" : "493",
+	"name": "order No1",
+	"totalPrice": "19,00",
+	"date":  "19-12-2008",
+	"user": {
+		"id": "u1",
+		"name": "sunny",
+	},
+	"products": [
+		{
+			"id" : "p1",
+			"name": "Roggenbrot",
+			"category": "Brot",
+			"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+			"price" : "4,00",
+			"weight" : "1000g",
+			"unit" : "piece",
+			"description" : "sehr saftiges, kerniges Brot",
+			"amount": "3",
+		},
+		{
+			"id" : "p3",
+			"name": "Bauernbrot",
+			"category": "Brot",
+			"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+			"price" : "3,50",
+			"weight" : "1000g",
+			"unit" : "piece",
+			"description" : "der Klassiker! Passt zu allem",
+			"amount" : "2"
+
+		}
+	
+
+	]		
+	
+}
+//create separate variable user?
+
+
 class Cart extends Component {
 	render() {
 		return (

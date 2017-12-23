@@ -1,0 +1,192 @@
+
+/* SCHEMA */
+/*
+user:{
+	id: ID,
+	name: STRING,
+	address: STRING,
+	@mail: STRING,
+	phone: STRING,
+	orders: [Order]
+},
+
+product:{
+	id: NUMBER,
+	name: STRING,
+	category: STRING,
+	ingredients: [STRING],
+	price: NUMBER,
+	weight: STRING,
+	unit: kg || g || piece,
+	description: STRING
+},
+
+order:{
+	id: ID,
+	name: STRING,
+	totalPrice: NUMBER,
+	date: DATE,
+	user: USER,
+	products: [Product + amount]
+
+}
+*/
+
+
+/* hardcoded Examples*/
+//USER
+{
+	"data": {
+		"user": {
+			"id": "1",
+			"name": "sunny",
+			"address": "main road 11, 49573 nowhere",
+			"@mail" : "sunny@bright.de",
+			"phone" : "+33 4394 4848 39",
+			"orders": {
+				"id" : "493",
+				"name": "order No1",
+				"totalPrice": "19,00",
+				"date":  "19-12-2008",
+				"products": [
+					{
+						"id" : "p1",
+						"name": "Roggenbrot",
+						"category": "Brot",
+						"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+						"price" : "4,00",
+						"weight" : "1000g",
+						"unit" : "piece",
+						"description" : "sehr saftiges, kerniges Brot",
+						"amount": "3",
+					},
+					{
+						"id" : "p3",
+						"name": "Bauernbrot",
+						"category": "Brot",
+						"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+						"price" : "3,50",
+						"weight" : "1000g",
+						"unit" : "piece",
+						"description" : "der Klassiker! Passt zu allem",
+						"amount" : "2"
+
+					}
+				
+
+				]
+				
+			}
+		}
+	}
+
+}
+
+//ORDER
+{
+	"data":{
+		"orders" :{
+			"id" : "493",
+			"name": "order No1",
+			"totalPrice": "19,00",
+			"date":  "19-12-2008",
+			"user": {
+				"id": "u1",
+				"name": "sunny",
+			},
+			"products": [
+				{
+					"id" : "p1",
+					"name": "Roggenbrot",
+					"category": "Brot",
+					"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+					"price" : "4,00",
+					"weight" : "1000g",
+					"unit" : "piece",
+					"description" : "sehr saftiges, kerniges Brot",
+					"amount": "3",
+				},
+				{
+					"id" : "p3",
+					"name": "Bauernbrot",
+					"category": "Brot",
+					"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+					"price" : "3,50",
+					"weight" : "1000g",
+					"unit" : "piece",
+					"description" : "der Klassiker! Passt zu allem",
+					"amount" : "2"
+
+				}
+			
+
+			]		
+			
+		}
+	}
+}
+
+//PRODUCT
+{
+	"data": {
+		"product":{
+			"id" : "p1",
+			"name": "Roggenbrot",
+			"category": "Brot",
+			"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+			"price" : "4,00",
+			"weight" : "1000g",
+			"unit" : "piece",
+			"description" : "sehr saftiges, kerniges Brot"
+		}
+	}
+},
+
+{
+	"data": {
+		"product": {
+			"id" : "p2",
+			"name": "Dinkelbrot",
+			"category": "Brot",
+			"ingredients": ["Dinkelmehl", "Dinkelschrot", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+			"price" : "5,00",
+			"weight" : "1000g",
+			"unit" : "piece",
+			"description" : "sehr bekömmliches Vollkornschrot"
+		}
+	
+	}
+}
+
+{
+	"data": {
+		"product": {
+			"id" : "p3",
+			"name": "Bauernbrot",
+			"category": "Brot",
+			"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
+			"price" : "3,50",
+			"weight" : "1000g",
+			"unit" : "piece",
+			"description" : "der Klassiker! Passt zu allem"
+
+		}
+
+	}
+}
+
+{
+	"data": {
+		"product":{
+			"id" : "a1",
+			"name": "Naturata Vollmilchschokolade",
+			"category": "Schokolade",
+			"ingredients": [ "Kakao min 30%", "Kakaobutter", "Milch", "Magermilchpulver", "Vanille"],
+			"price" : "3,50",
+			"weight" : "100g",
+			"unit" : "piece",
+			"description" : "Fairtrade, aus der Schweiz und Bio"
+		}
+		
+	}
+}
