@@ -53,13 +53,20 @@ var products = [
 
 
 class Products extends Component {
+	constructor(props){
+		super(props)
+	}
+
 	render() {
 		return (
 			<div>
-				<div>Find your beloved product!</div>
+				<div>{ this.props.match.params.product }</div>
 				{
-					products.map((item) =>
-					<Product key={ item.id } product={ item } />
+					products.map((item) => {
+						if(this.props.match.params.product == item.category){
+							return <Product key={ item.id } product={ item } />
+						}
+					}
 				)}
 				
 			</div>

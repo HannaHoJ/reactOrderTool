@@ -23,7 +23,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/categories" component={Categories} />
-          <Route exact path="/categories" component={Categories} />
+         
           <Route path="/categories/:product" component={Products} />
         {/* cart has to be /:user/cart */}
           <Route exact path="/cart" component={Cart} />

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link, Route } from 'react-router-dom';
 import Products from './Products.js';
 import './Categories.css';
+import App from './App.js';
 
 const products = [
 	{
@@ -55,14 +56,14 @@ function getCategoryElements(products){
 	for(let product of products){
 		const category = product.category? product.category : 'pain text';
 		if(!catergories.has(category)){
-			array.push(<Category value={ category } />);
+			array.push(<Category key={ product.id } value={ product.category } />);
 			catergories.add(category);
 		} 
 	}
 	return array;
 }
 
-const Category = (props) => {
+const Category = (props ) => {
 		return (
 
 			<CategoryList>	
@@ -83,6 +84,7 @@ const CategoryList = (props) =>{
 				<ul>
 					{ props.children }
 				</ul>
+				
 			</div>
 		)
 
@@ -93,6 +95,7 @@ function Categories(){
 	return (
 			<div>
 				{ getCategoryElements(products) }
+				
 			</div>
 		)
 }

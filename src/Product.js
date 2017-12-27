@@ -19,6 +19,7 @@ class Product extends Component {
 				<div>{ this.props.product.price } €</div>
 				<div>{ this.props.product.weight } { this.props.product.unit }</div>
 				<AmountSelector productId={ this.props.product.id } />
+				
 				<hr/>
 			</div>
 		);
