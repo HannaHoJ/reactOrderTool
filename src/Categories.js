@@ -48,66 +48,53 @@ const products = [
 	}
 ];
 
-//variable products ==> basically query result
-//store the resutl in a data props
-//store user info in user prop
-//lookup: for loop over all products
-//query category out of the results
-/*{this.props.data.allPosts.map((post) => {
-                if ((post && post.user.id === this.props.data.user.id) || this.props.data.user.isAdmin) {
-                  return (<PostPreviewAdmin key={post.id} post={post}/>);
-                } else {
-                  return (<PostPreview key={post.id} post={post}/>);
-                }
-              })}
-*/
 
-function ListItem(props){
-	return <li>{ props.category }</li>
+function getCategoryElements(products){
+	const catergories = new Set();
+	const array = [];
+	for(let product of products){
+		const category = product.category? product.category : 'pain text';
+		if(!catergories.has(category)){
+			array.push(<Category value={ category } />);
+			catergories.add(category);
+		} 
+	}
+	return array;
 }
 
-function CategoryNames(props){
-	
-	const types = props.products.map((item) =>
-				<ListItem key={ item.id } category={ item.category } />
-		);
-	return (
-		<ul> { types }	</ul>
-	)
+const Category = (props) => {
+		return (
+
+			<CategoryList>	
+				<li> 
+					<Link to={`/categories/${props.value}`}> 
+						{ props.value } 
+					</Link>
+				</li>
+			</CategoryList>
+		);	
 }
 
-//TODO query catergory of items and only show it once. hand products of these categorys down to products
-// function Categories(props){
-// 	return(
-// 		<div className={'category-' + props.name} >
-// 			{ props.children }
-// 		</div>
-// 	)
-// }
-const Categories = ({match}) => {
-	<CategoryNames products={products} />
+
+const CategoryList = (props) =>{
+
+		return(
+			<div>
+				<ul>
+					{ props.children }
+				</ul>
+			</div>
+		)
+
+}
+
+
+function Categories(){
 	return (
-		<div> 
-			<div>Choose a Category you like!</div>
-
-			<CategoryNames products= { products } /> 
-
-
-			<Link to={`${match.url}/Brot`}>
-				<CategoryNames products= { products } />
-			</Link>
-		{/* JSX Comment 
-			<ul>
-			    <li><Link to={`${match.url}/bread`}>bread</Link></li>
-			    <li><Link to={`${match.url}/milk`}>milk</Link></li>
-			    <li><Link to={`${match.url}/grains`}>grains</Link></li>
-
-  			</ul>
-  			<Route path={`${match.path}/:name`} render= {({match}) =>( <div> <h3> {match.params.name} </h3></div>)}/>
-  			*/}
-  		</div>
-
-	)
+			<div>
+				{ getCategoryElements(products) }
+			</div>
+		)
 }
 
 
