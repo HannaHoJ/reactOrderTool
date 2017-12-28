@@ -17,10 +17,7 @@ class Cart extends Component {
 	getTotalItemPrice = (order) =>{
 		const price = parseFloat(order.price.replace(",","."));
 		const amount = parseFloat(order.amount);
-		console.log(price);
-		console.log(amount);
-		const result = price*amount;
-		return result;
+		return price*amount;
 	}
 
 	getTotalCartPrice=() =>{
