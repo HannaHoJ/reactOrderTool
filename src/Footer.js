@@ -1,1 +1,1 @@
-Footer.js
+//footer with impressum /contact address

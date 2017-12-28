@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import './Nav.css';
 
-
+//we can put that in a header component with other fancy stuff
 class Nav extends Component {
 	render() {
 		return (

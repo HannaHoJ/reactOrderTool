@@ -5,11 +5,28 @@ import AmountSelector from './AmountSelector.js';
 
 
 class Product extends Component {
-	static propTypes={
+	constructor(props){
+		super(props);
 		product: PropTypes.object,
+		this.state = {
+			amount: 1
+		};
+	}
+	
+	callback = (amountFromAmountSelector) => {
+			if(amountFromAmountSelector >= this.state.amount){
+				this.setState((prevState, props) => ({ 
+					amount: prevState.amount + 1
+				}))
+			}
+		 
 	}
 
-
+	addToCart = () => {
+		//creating json object with product.name, product.id, user.id, product.amount (how to access state from parent component)
+		// product.pic, product.price
+	}
+	//display simple product
 	render() {
 		return (
 			<div>
@@ -18,8 +35,10 @@ class Product extends Component {
 				<div>{ this.props.product.ingredients } </div>
 				<div>{ this.props.product.price } €</div>
 				<div>{ this.props.product.weight } { this.props.product.unit }</div>
-				<AmountSelector productId={ this.props.product.id } />
-				
+			{/* callback from child component to have access to product amount in parent component */}
+				<AmountSelector productId={ this.props.product.id } callback={this.callback} />
+				{/* <div>{ this.state.amount }</div> */}
+				<button type="submit" onClick={ this.addToCart } >Add to cart</button>
 				<hr/>
 			</div>
 		);

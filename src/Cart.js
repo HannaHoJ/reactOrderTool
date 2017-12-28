@@ -1,51 +1,53 @@
 import React, { Component } from 'react';
 import './Cart.css';
+import orderData from './order-data.js';
+import CartItem from './CartItem.js';
 
-var order = {
-	"id" : "493",
-	"name": "order No1",
-	"totalPrice": "19,00",
-	"date":  "19-12-2008",
-	"user": {
-		"id": "u1",
-		"name": "sunny",
-	},
-	"products": [
-		{
-			"id" : "p1",
-			"name": "Roggenbrot",
-			"category": "Brot",
-			"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
-			"price" : "4,00",
-			"weight" : "1000g",
-			"unit" : "piece",
-			"description" : "sehr saftiges, kerniges Brot",
-			"amount": "3",
-		},
-		{
-			"id" : "p3",
-			"name": "Bauernbrot",
-			"category": "Brot",
-			"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
-			"price" : "3,50",
-			"weight" : "1000g",
-			"unit" : "piece",
-			"description" : "der Klassiker! Passt zu allem",
-			"amount" : "2"
-
-		}
-	
-
-	]		
-	
-}
-//create separate variable user?
 
 
 class Cart extends Component {
+	constructor(props){
+		super(props)
+		
+		this.getTotalItemPrice = this.getTotalItemPrice.bind(this);
+		this.getTotalCartPrice = this.getTotalCartPrice.bind(this);
+		this.getCartItems = this.getCartItems.bind(this);
+	}
+
+	getTotalItemPrice = (order) =>{
+		const price = parseFloat(order.price.replace(",","."));
+		const amount = parseFloat(order.amount);
+		console.log(price);
+		console.log(amount);
+		const result = price*amount;
+		return result;
+	}
+
+	getTotalCartPrice=() =>{
+		var totalCartPrice= 0;
+		var cartItems = orderData.products.map((order) => {
+			totalCartPrice+= this.getTotalItemPrice(order);
+		});
+		return (<span>{ totalCartPrice}</span>);
+	}
+
+	getCartItems=()=>{
+		var cartItems = orderData.products.map((order) => {
+			return <CartItem key={ order.id } orderedProduct={ order } totalItemPrice={ this.getTotalItemPrice(order) } />
+		});
+		return (<div>{ cartItems }</div>);
+	}
 	render() {
 		return (
-			<div>Take a look in your Cart!</div>
+			<div>
+				<div>Welcome to your cart { orderData.user.name }</div>
+				<div>orderID: { orderData.id }</div>
+				<div>{ this.getCartItems() }</div>
+				<hr />
+				<div></div>
+				<div>Total: { this.getTotalCartPrice() } €</div>
+				<button type="submit" >Submit Order</button>
+			</div>
 		);
 	}
 }

@@ -12,6 +12,7 @@ const NotFound = () => (
   <h3>404.. This page is not found!</h3>
 )
 
+//Main routing 
 class App extends Component {  
 
 

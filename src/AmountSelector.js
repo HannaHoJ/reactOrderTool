@@ -11,21 +11,23 @@ class AmountSelector extends Component {
 	}
 
 	selectMore(e){
-		if(this.state.amount >= 0){
+		if(this.state.amount > 0){
 			this.setState({
 				amount: this.state.amount + 1
 			});
 		}
+		this.props.callback(this.state.amount);
 	}
 
 	selectLess(e){
-		if(this.state.amount > 0){
+		if(this.state.amount > 1){
 			this.setState({
 				amount: this.state.amount - 1
 			});
 		}
+		this.props.callback(this.state.amount);
 	}
-
+	
 	render() {
 		return (
 			<div>
