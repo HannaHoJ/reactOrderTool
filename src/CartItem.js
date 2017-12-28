@@ -7,18 +7,7 @@ import './CartItem.css';
 class CartItem extends Component {
 	constructor(props){
 		super(props);
-		// this.getTotalItemPrice = this.getTotalItemPrice.bind(this);
 	}
-
-	// getTotalItemPrice = () =>{
-	// 	const price = parseFloat(this.props.orderedProduct.price.replace(",","."));
-	// 	const amount = parseFloat(this.props.orderedProduct.amount);
-	// 	console.log(price);
-	// 	console.log(amount);
-	// 	const result = price*amount;
-	// 	this.props.callback(result);
-	// 	return result;
-	// }
 
 	render() {
 		return (
