@@ -15,21 +15,21 @@ class Cart extends Component {
 	}
 
 	getTotalItemPrice = (order) =>{
-		const price = parseFloat(order.price.replace(",","."));
-		const amount = parseFloat(order.amount);
-		return price*amount;
+		// const price = parseFloat(order.price.replace(",","."));
+		// const amount = parseFloat(order.amount);
+		return (order.price*order.amount)/100;
 	}
 
 	getTotalCartPrice=() =>{
 		var totalCartPrice= 0;
-		var cartItems = orderData.products.map((order) => {
+		var cartItems = orderData.items.map((order) => {
 			totalCartPrice+= this.getTotalItemPrice(order);
 		});
 		return (<span>{ totalCartPrice}</span>);
 	}
 
 	getCartItems=()=>{
-		var cartItems = orderData.products.map((order) => {
+		var cartItems = orderData.items.map((order) => {
 			return <CartItem key={ order.id } orderedProduct={ order } totalItemPrice={ this.getTotalItemPrice(order) } />
 		});
 		return (<div>{ cartItems }</div>);

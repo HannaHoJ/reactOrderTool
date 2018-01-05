@@ -18,10 +18,10 @@ registerServiceWorker();
 
 const isTestMode = true;
 if(isTestMode) {
-	// if(Products.isEmpty){
-	// 	const products = require('./products-data.json').products;
-	// 	for(let product of products) {
-	// 		Products.insert(product);
-	// 	}
-	// }
+	if(Products.isEmpty){
+		const products = require('./api/products-data.json').products;
+		for(let product of products) {
+			Products.insert(product);
+		}
+	}
 }

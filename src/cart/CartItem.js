@@ -16,7 +16,7 @@ class CartItem extends Component {
 				<span>Name: { this.props.orderedProduct.name }</span>{", "}
 			{/* <span>Kategorie: { this.props.orderedProduct.category }</span>{", "} */}
 				<span>Anzahl: { this.props.orderedProduct.amount }</span>{", "}
-				<span>Preis: { this.props.orderedProduct.price } €</span>{", "}
+				<span>Preis: { this.props.orderedProduct.price/100 } €</span>{", "}
 				<div>Zwischensumme: { this.props.totalItemPrice } €</div>	
 			</div>
 		);

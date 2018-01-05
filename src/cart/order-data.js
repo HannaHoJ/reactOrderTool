@@ -8,13 +8,13 @@ var orderData = {
 		"id": "u1",
 		"name": "sunny",
 	},
-	"products": [
+	"items": [
 		{
 			"id" : "p1",
 			"name": "Roggenbrot",
 			"category": "Brot",
 			//"ingredients": ["Roggenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
-			"price" : "4,00",
+			"price" : "400",
 			//"weight" : "1000g",
 			//"unit" : "piece",
 			//"description" : "sehr saftiges, kerniges Brot",
@@ -25,7 +25,7 @@ var orderData = {
 			"name": "Bauernbrot",
 			"category": "Brot",
 			//"ingredients": [ "Roggenmehl", "Weizenmehl", "Wasser", "Sauerteig", "Hefe", "Salz", "Pfeffer", "Kümmel"],
-			"price" : "3,50",
+			"price" : "350",
 			//"weight" : "1000g",
 			//"unit" : "piece",
 			//"description" : "der Klassiker! Passt zu allem",
