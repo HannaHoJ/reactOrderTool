@@ -22,6 +22,7 @@ if(isTestMode) {
 		const products = require('./api/products-data.json').products;
 		for(let product of products) {
 			Products.insert(product);
+			console.log("product: " + product.id + ", name: " + product.name);
 		}
 	}
 }

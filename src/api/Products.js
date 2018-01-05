@@ -1,7 +1,7 @@
 
 //AKA GET, POST, PUT, DELETE **** server side functions
 
-const Products = require('./products-data.json').products;
+const Products = {};
 //creates v4 (random) id
 const uuidv4 = require('uuid/v4');
 
@@ -13,7 +13,7 @@ Products.isEmpty = () => {
 
 //get 
 Products.insert = (product) => { 
-	const id = uuidv4;
+	const id = uuidv4();
 	product.id = id;
 	if(Products.collection[id]){
 
@@ -29,7 +29,7 @@ Products.getById = (id) => {
 //get all Products
 Products.getAll = () =>{
 	const array = [];
-	for(let product in Products.collection){
+	for(let product in  Products.collection){
 		array.push(product);
 	}
 	return array;

@@ -12,7 +12,9 @@ import Products from './api/Products.js';
 function getCategoryElements(productData){
 	const catergories = new Set();
 	const array = [];
-	for(let product of productData){
+	for(let product of productData.getAll()){
+		console.log("id: " + product.id);
+		console.log("name: " + product.name);
 		const category = product.category? product.category : 'pain text';
 		//We what to show them only once!
 		if(!catergories.has(category)){
