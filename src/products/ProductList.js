@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Products.css';
-import Product from './Product.js';
-import productData from './product-data.js';
+import './ProductList.css';
+import ProductItem from './ProductItem.js';
+import Products from '../api/Products.js';
 
  
 
@@ -11,7 +11,7 @@ import productData from './product-data.js';
 // hand that prop to the render function
 
 
-class Products extends Component {
+class ProductList extends Component {
 	constructor(props){
 		super(props)
 		
@@ -24,9 +24,9 @@ class Products extends Component {
 			<div>
 				<div>{ this.props.match.params.product }</div>
 				{
-					productData.map((item) => {
+					Products.map((item) => {
 						if(this.props.match.params.product === item.category){
-							return <Product key={ item.id } product={ item }  />
+							return <ProductItem key={ item.id } product={ item }  />
 						}
 					}
 				)}
@@ -36,4 +36,4 @@ class Products extends Component {
 	}
 }
 
-export default Products;
+export default ProductList;

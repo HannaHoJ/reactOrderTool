@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Product.css';
+import './ProductItem.css';
 import AmountSelector from './AmountSelector.js';
 
 
-class Product extends Component {
+class ProductItem extends Component {
 	constructor(props){
 		super(props);
 		product: PropTypes.object,
@@ -44,4 +44,4 @@ class Product extends Component {
 		);
 	}
 }
-export default Product;
+export default ProductItem;

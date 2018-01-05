@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Route } from 'react-router-dom';
-import Products from './Products.js';
+import ProductList from './products/ProductList.js';
 import './Categories.css';
 import App from './App.js';
-import productData from './product-data.js';
+import Products from './api/Products.js';
+
 
 
 //what categories do we have in our dataset? 
@@ -52,7 +53,7 @@ const CategoryList = (props) =>{
 function Categories(){
 	return (
 		<div>
-			{ getCategoryElements(productData) }	
+			{ getCategoryElements(Products) }	
 		</div>
 	)
 }

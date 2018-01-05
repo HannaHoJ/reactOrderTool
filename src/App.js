@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Link, Route, Switch } from 'react-router-dom';
-import Cart from './Cart';
+import Cart from './cart/Cart';
 import Categories from './Categories';
 import Nav from './Nav';
-import Products from './Products';
+import ProductList from './products/ProductList';
 import Home from './Home';
 import Confirmation from './Confirmation';
 
@@ -24,8 +24,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/categories" component={Categories} />
-         
-          <Route path="/categories/:product" component={Products} />
+          <Route path="/categories/:product" component={ProductList} />
+         {/* JSX Comment */} 
         {/* cart has to be /:user/cart */}
           <Route exact path="/cart" component={Cart} />
           <Route component={NotFound} />

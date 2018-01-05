@@ -5,6 +5,7 @@ import './index.css';
 import {BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import Products from './api/Products.js';
 
 
 
@@ -14,3 +15,13 @@ ReactDOM.render((
 	</Router>	
 	), document.getElementById('root'));
 registerServiceWorker();
+
+const isTestMode = true;
+if(isTestMode) {
+	// if(Products.isEmpty){
+	// 	const products = require('./products-data.json').products;
+	// 	for(let product of products) {
+	// 		Products.insert(product);
+	// 	}
+	// }
+}
