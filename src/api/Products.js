@@ -11,7 +11,8 @@ Products.isEmpty = () => {
 	return Object.keys(Products.collection).length === 0;
 }
 
-//get 
+//tested-works
+//insert products in collection
 Products.insert = (product) => { 
 	const id = uuidv4();
 	product.id = id;
@@ -22,15 +23,42 @@ Products.insert = (product) => {
 	}
 
 }
-//get one Product
+
+
+Products.getCategories = () =>{
+	const catergories = new Set();
+	const array = [];
+	for(let product in Products.collection){
+		var item = Products.collection[product].category;	
+		if(!catergories.has(item)){
+			array.push(item);
+			catergories.add(item);
+		} 
+	}
+	return array;
+}
+
+
+//get one Product by id
 Products.getById = (id) => {
 	return Products.collection[id];
 }
-//get all Products
+//get all Products (not a good solution in ProductList)
 Products.getAll = () =>{
 	const array = [];
-	for(let product in  Products.collection){
-		array.push(product);
+	for(let product in Products.collection){
+		var item = Products.collection[product];
+		array.push(item);
+	}
+	return array;
+}
+
+Products.getProductsByCategory = (category) =>{
+	const array = [];
+	for(let product in Products.collection){
+		if(Products.collection[product].category == category){
+			array.push(Products.collection[product])
+		}
 	}
 	return array;
 }
@@ -49,7 +77,7 @@ Products.delete = (id) => {
 	delete Products.collection[id];
 }
 
-//delete Products
+//delete all Products in collection
 Products.delete = () => {
 	for (let product in Products.collection) {
     	delete Products.collection[product];

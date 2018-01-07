@@ -24,13 +24,15 @@ class ProductList extends Component {
 			<div>
 				<div>{ this.props.match.params.product }</div>
 				{
-					Products.map((item) => {
-						if(this.props.match.params.product === item.category){
-							return <ProductItem key={ item.id } product={ item }  />
-						}
-					}
-				)}
-				
+					// Products.getAll().map((item) => {
+					// 	if(this.props.match.params.product === item.category){
+					// 		return <ProductItem key={ item.id } product={ item }  />
+					// 	}
+					// }
+					Products.getProductsByCategory(this.props.match.params.product).map((item) => {
+						return <ProductItem key={ item.id } product={ item }  />
+					})
+				}
 			</div>
 		);
 	}

@@ -51,11 +51,17 @@ const CategoryList = (props) =>{
 	)
 }
 
+
 //call function in react js
 function Categories(){
+	
 	return (
 		<div>
-			{ getCategoryElements(Products) }	
+			{ 
+			Products.getCategories().map((item) =>{
+				return (<Category key={ item } value={ item } />)
+			}) 
+		}	
 		</div>
 	)
 }

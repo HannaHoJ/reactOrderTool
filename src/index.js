@@ -17,6 +17,7 @@ ReactDOM.render((
 registerServiceWorker();
 
 const isTestMode = true;
+var array = [];
 if(isTestMode) {
 	if(Products.isEmpty){
 		const products = require('./api/products-data.json').products;
@@ -25,4 +26,8 @@ if(isTestMode) {
 			console.log("product: " + product.id + ", name: " + product.name);
 		}
 	}
+	console.log(Products);
+	console.log(Products.getAll());
+	console.log(Products.getCategories());
+	
 }
