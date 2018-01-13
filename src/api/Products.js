@@ -1,6 +1,8 @@
 
 //AKA GET, POST, PUT, DELETE **** server side functions
 
+var Orders = require('./Orders.js');
+
 const Products = {};
 //creates v4 (random) id
 const uuidv4 = require('uuid/v4');
@@ -11,7 +13,7 @@ Products.isEmpty = () => {
 	return Object.keys(Products.collection).length === 0;
 }
 
-//tested-works
+
 //insert products in collection
 Products.insert = (product) => { 
 	const id = uuidv4();
@@ -26,13 +28,11 @@ Products.insert = (product) => {
 
 
 Products.getCategories = () =>{
-	const catergories = new Set();
 	const array = [];
 	for(let product in Products.collection){
 		var item = Products.collection[product].category;	
-		if(!catergories.has(item)){
+		if(!array.includes(item)){
 			array.push(item);
-			catergories.add(item);
 		} 
 	}
 	return array;
@@ -43,12 +43,12 @@ Products.getCategories = () =>{
 Products.getById = (id) => {
 	return Products.collection[id];
 }
-//get all Products (not a good solution in ProductList)
+//get all Products 
 Products.getAll = () =>{
 	const array = [];
 	for(let product in Products.collection){
 		var item = Products.collection[product];
-		array.push(item);
+		array.push(product);
 	}
 	return array;
 }
@@ -72,13 +72,27 @@ Products.update = (id, parameter) => {
 	
 // }
 
+//submit product to cart
+Products.submit = (id, amount) => {
+	var product = Products.collection[id];
+	product.amount = amount;
+	console.log("product submitted: " + product.amount);
+	return Orders.addProduct(product);
+}
+
 //delete product
 Products.delete = (id) => {
-	delete Products.collection[id];
+	if(id === null || id === undefined || id === false){
+		console.log("[ERORR] id is not defined in delete()")
+	}
+	else{
+		delete Products.collection[id];
+	}
+	
 }
 
 //delete all Products in collection
-Products.delete = () => {
+Products.deleteAll = () => {
 	for (let product in Products.collection) {
     	delete Products.collection[product];
 	}

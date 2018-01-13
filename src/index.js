@@ -28,6 +28,5 @@ if(isTestMode) {
 	}
 	console.log(Products);
 	console.log(Products.getAll());
-	console.log(Products.getCategories());
-	
+	console.log(Products.getCategories());	
 }

@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ProductItem.css';
 import AmountSelector from './AmountSelector.js';
+import Products from '../api/Products.js';
 
 
 class ProductItem extends Component {
 	constructor(props){
 		super(props);
-		product: PropTypes.object,
+		//product: PropTypes.object,
 		this.state = {
 			amount: 1
 		};
+
+		this.addToCart = this.addToCart.bind(this);
 	}
 	
 	callback = (amountFromAmountSelector) => {
@@ -23,6 +26,8 @@ class ProductItem extends Component {
 	}
 
 	addToCart = () => {
+		console.log("addToCart");
+		return Products.submit(this.props.product.id, this.state.amount);
 		//creating json object with product.name, product.id, user.id, product.amount (how to access state from parent component)
 		// product.pic, product.price
 	}
