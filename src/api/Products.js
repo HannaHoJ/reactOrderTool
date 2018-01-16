@@ -1,7 +1,7 @@
 
 //AKA GET, POST, PUT, DELETE **** server side functions
 
-var Orders = require('./Orders.js');
+//var Orders = require('./Orders.js');
 
 const Products = {};
 //creates v4 (random) id
@@ -73,11 +73,12 @@ Products.update = (id, parameter) => {
 // }
 
 //submit product to cart
-Products.submit = (id, amount) => {
+Products.addToCart = (id, amount) => {
 	var product = Products.collection[id];
 	product.amount = amount;
 	console.log("product submitted: " + product.amount);
-	return Orders.addProduct(product);
+	//return Orders.addProduct(product);
+	return product;
 }
 
 //delete product

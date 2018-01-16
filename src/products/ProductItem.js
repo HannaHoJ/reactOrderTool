@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './ProductItem.css';
 import AmountSelector from './AmountSelector.js';
 import Products from '../api/Products.js';
+import Orders from '../api/Orders.js';
 
 
 class ProductItem extends Component {
@@ -27,9 +28,13 @@ class ProductItem extends Component {
 
 	addToCart = () => {
 		console.log("addToCart");
-		return Products.submit(this.props.product.id, this.state.amount);
-		//creating json object with product.name, product.id, user.id, product.amount (how to access state from parent component)
-		// product.pic, product.price
+		var product = Products.getById(this.props.product.id);
+		product.amount = this.state.amount;
+		//Orders.getOrderId()
+		console.log("produdct " + product.id + " amount " + product.amount);
+
+		var order = Orders.addProduct(product);
+		//creating prop with order.id;
 	}
 	//display simple product
 	render() {
