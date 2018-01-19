@@ -6,7 +6,16 @@ const uuidv4 = require('uuid/v4');
 
 Orders.collection = {};
 
+Orders.insert = (order) => { 
+	const id = uuidv4();
+	order.id = id;
+	if(Orders.collection[id]){
 
+	} else {
+		Orders.collection[id] = order; //assume product matches schema (todo: validate)
+	}
+
+}
 
 Orders.isEmpty = () => {
 	return Object.keys(Orders.collection).length === 0;
@@ -17,17 +26,21 @@ Orders.getById = (id) => {
 	return Orders.collection[id];
 }
 
+Orders.getItems =(id) => {
+	return Orders.collection[id].items;
+}
 
 Orders.isActive = (id) =>{
-	return (Orders.collection[id].flag)? true : false;
+	console.log(Orders.collection[id].status)
+	return (Orders.collection[id].status === "active")? true : false;
 }
 
 Orders.isConfirmed = (id) =>{
-	return (Orders.collection[id].flag === 2)? true : false;
+	return (Orders.collection[id].status === "confirmed")? true : false;
 }
 
 Orders.isClosed = (id) =>{
-	return (!Orders.collection[id].flag)? true : false;
+	return (Orders.collection[id].status === "closed")? true : false;
 }
 
 Orders.findActiveOrder = () => {
@@ -38,6 +51,21 @@ Orders.findActiveOrder = () => {
 	}
 }
 
+Orders.existsActiveOrder = () => {
+	for(let order in Orders.collection){
+		return Orders.isActive(order);
+	}
+}
+
+Orders.getActiveOrder = () => {
+	for(let order in Orders.collection){
+		if(Orders.isActive(order)){
+			return Orders.collection[order];
+		}
+	}
+}
+
+//one can add products with same key. should not be allowed, instead add the product amount to the existing key
 Orders.addProduct = (product) => {
 	if(Orders.isEmpty()){
 		Orders.createOrder(product);
@@ -71,7 +99,7 @@ Orders.createOrder = (product) => {
 		Orders.collection[id].items = [];
 		Orders.collection[id].items.push(product);
 		Orders.collection[id].created = new Date();
-		Orders.collection[id].flag = 1;
+		Orders.collection[id].status = "active";
 		//Orders.collection[id].user = user;
 	}
 }

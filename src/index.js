@@ -26,10 +26,13 @@ if(isTestMode) {
 			console.log("product: " + product.id + ", name: " + product.name);
 		}
 	}
-	// if(Orders.isEmpty){
-	// 	const orders = require('./api/order-data.json').orders;
-	// 	console.log(orders);
-	// }
+	if(Orders.isEmpty){
+		const orders = require('./api/order-data.json').orders;
+		for(let order of orders) {
+			Orders.insert(order);
+			console.log("order: " + order.id + ", name: " + order.name);
+		}
+	}
 	console.log(Orders.collection);
 	console.log(Products.getAll());
 	console.log(Products.getCategories());	
