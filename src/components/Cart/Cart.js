@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './Cart.css';
-import orderData from './order-data.js';
-import CartItem from './CartItem.js';
-import Orders from '../api/Orders.js';
+import CartItem from '../CartItem/CartItem.js';
+import Orders from './../../api/Orders.js';
 
 
 
@@ -23,12 +22,11 @@ class Cart extends Component {
 
 
 
-	getTotalCartPrice=(orderItems) =>{
-		var totalCartPrice= 0;
-		var cartItems = orderItems.map((item) => {
-			totalCartPrice+= this.getTotalItemPrice(item);
+	getTotalCartPrice = (orderItems) =>{
+		var totalCartPrice = orderItems.reduce((acc, curr) => {
+			return (this.getTotalItemPrice(acc) + this.getTotalItemPrice(curr));
 		});
-		return (<span>{ totalCartPrice}</span>);
+		return <span>{ totalCartPrice}</span>;
 	}
 
 
@@ -36,9 +34,9 @@ class Cart extends Component {
 		//console.log(order.items)
 
 		var cartItems = orderItems.map((item) => {
-					return <CartItem key={ item.id } orderedProduct={ item } totalItemPrice={ this.getTotalItemPrice(item) } />
+					return <CartItem key={ item.id } orderedItem={ item } totalItemPrice={ this.getTotalItemPrice(item) } />
 				});
-		return (<div>{ cartItems }</div>);
+		return <div>{ cartItems }</div>;
 	}
 	render() {
 		const order = Orders.getActiveOrder();

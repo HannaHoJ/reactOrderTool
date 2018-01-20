@@ -47,7 +47,6 @@ Products.getById = (id) => {
 Products.getAll = () =>{
 	const array = [];
 	for(let product in Products.collection){
-		var item = Products.collection[product];
 		array.push(product);
 	}
 	return array;
@@ -56,7 +55,7 @@ Products.getAll = () =>{
 Products.getProductsByCategory = (category) =>{
 	const array = [];
 	for(let product in Products.collection){
-		if(Products.collection[product].category == category){
+		if(Products.collection[product].category === category){
 			array.push(Products.collection[product])
 		}
 	}

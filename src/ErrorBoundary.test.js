@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductList from './ProductList';
+import ErrorBoundary from './ErrorBoundary';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Products />, div);
+  ReactDOM.render(<ErrorBoundary />, div);
 });

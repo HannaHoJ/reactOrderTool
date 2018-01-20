@@ -8,16 +8,15 @@ import registerServiceWorker from './registerServiceWorker';
 import Products from './api/Products.js';
 import Orders from './api/Orders.js';
 
-
 ReactDOM.render((
 	<Router>
+
 		<App />
 	</Router>	
 	), document.getElementById('root'));
 registerServiceWorker();
 
 const isTestMode = true;
-var array = [];
 if(isTestMode) {
 	if(Products.isEmpty()){
 		const products = require('./api/products-data.json').products;

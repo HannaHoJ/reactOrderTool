@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './ProductItem.css';
-import AmountSelector from './AmountSelector.js';
-import Products from '../api/Products.js';
-import Orders from '../api/Orders.js';
+import AmountSelector from '../AmountSelector/AmountSelector.js';
+import Products from './../../api/Products.js';
+import Orders from './../../api/Orders.js';
 
 
 class ProductItem extends Component {
@@ -27,14 +26,11 @@ class ProductItem extends Component {
 	}
 
 	addToCart = () => {
-		console.log("addToCart");
 		var product = Products.getById(this.props.product.id);
 		product.amount = this.state.amount;
-		//Orders.getOrderId()
 		console.log("produdct " + product.id + " amount " + product.amount);
 
-		var order = Orders.addProduct(product);
-		//creating prop with order.id;
+		return Orders.addProduct(product);
 	}
 	//display simple product
 	render() {
