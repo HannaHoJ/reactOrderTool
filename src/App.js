@@ -3,6 +3,7 @@ import './App.css';
 import { Link, Route, Switch, BrowserRouter as Router  } from 'react-router-dom';
 import Cart from './components/Cart/Cart.js';
 import Categories from './components/Categories/Categories.js';
+import ProductList from './components/ProductList/ProductList.js';
 import Products from './api/Products.js';
 import Orders from './api/Orders.js';
 //import Nav from './Nav';
@@ -65,7 +66,8 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/categories" component={Categories} />              
+              <Route path="/categories" component={Categories} />      
+              <Route path="/categories/:product" component={ProductList} />        
              {/* JSX Comment */} 
             {/* cart has to be /:user/cart */}
               <Route path="/cart" component={Cart} />
