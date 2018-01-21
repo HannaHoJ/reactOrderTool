@@ -15,15 +15,9 @@ class Cart extends Component {
 		//this.getCartState = this.getCartState.bind(this);
 		this.state = {
 			hasActiveOrder: Orders.hasActiveOrder(),
+			updateOrder: false,
 		}
 	}
-
-
-	// getCartState = (active) => {
-	// 	this.setState({
-	// 		hasActiveOrder: active
-	// 	})
-	// }
 
 	getTotalItemPrice = (order) =>{
 		// const price = parseFloat(order.price.replace(",","."));
@@ -32,20 +26,33 @@ class Cart extends Component {
 	}
 
 
+	callback = (updateOrder) => {
+		this.setState({
+			updateOrder: updateOrder,
+		})
+	}
 
 	getTotalCartPrice = (orderItems) =>{
-		var totalCartPrice = orderItems.reduce((acc, curr) => {
-			return (this.getTotalItemPrice(acc) + this.getTotalItemPrice(curr.price));
+		var totalCartPrice = 0;
+		orderItems.map((item) => {
+			return totalCartPrice+= this.getTotalItemPrice(item);
 		});
-		return <span>{ totalCartPrice}</span>;
+		return (<span>{ totalCartPrice}</span>);
 	}
 
 	getCartItems=(orderItems)=>{
 		//console.log(order.items)
-
 		var cartItems = orderItems.map((item) => {
-					return <CartItem key={ item.id } name={ item.name } amount={ item.amount } price={ item.price } totalItemPrice={ this.getTotalItemPrice(item) } />
-				});
+			return <CartItem 
+				key={ item.id } 
+				id={ item.id } 
+				name={ item.name } 
+				amount={ item.amount } 
+				price={ item.price } 
+				totalItemPrice={ this.getTotalItemPrice(item) }
+				callback = { this.callback } />
+
+		});
 		return <div>{ cartItems }</div>;
 	}
 
@@ -56,6 +63,7 @@ class Cart extends Component {
 			return (
 			//insert conditional rendering, what happens if cart is empty
 			<div>
+				<ul>
 				{/* 
 				<div>Welcome to your cart { this.props.activeOrder.user.name }</div>
 				
@@ -66,10 +74,11 @@ class Cart extends Component {
 				<div></div>
 				<div>Total: { this.getTotalCartPrice(order.items) } €</div>
 				<button type="submit" >Submit Order</button>
+				</ul>
 			</div>
 			);
 		}else{
-			return (<div>Cart is empty!</div>)
+			return (<h3>Cart is empty!</h3>)
 		}
 		
 	}

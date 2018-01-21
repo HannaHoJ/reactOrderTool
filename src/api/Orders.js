@@ -51,6 +51,21 @@ Orders.findActiveOrderId = () => {
 	}
 }
 
+Orders.hasItem = (orderId, productId) => {
+	for(let i = 0; i <= Orders.collection[orderId].items.length; i++){
+		if(Orders.collection[orderId].items[i].id === productId){
+			return true;
+		}
+		return false;
+	}
+}
+Orders.getItemById = (orderId, productId) => {
+	for(let item of Orders.collection[orderId].items){
+		if(item.id === productId){
+			return item;
+		}
+	}
+}
 
 Orders.hasActiveOrder = () => {
 	for(let order in Orders.collection){
@@ -60,11 +75,6 @@ Orders.hasActiveOrder = () => {
 		else{
 			return false;
 		}
-	}
-}
-Orders.existsActiveOrder = () => {
-	for(let order in Orders.collection){
-		return Orders.isActive(order);
 	}
 }
 
@@ -82,17 +92,38 @@ Orders.addProduct = (product) => {
 		return Orders.createOrder(product);
 	}
 	else{
-		var orderId = Orders.findActiveOrderId();
-		console.log(orderId);
-		if(!Orders.isActive(orderId)){
-			console.log(Orders.isActive(orderId) + "no active order");
+		if(!Orders.hasActiveOrder()){
 			return Orders.createOrder(product);
 		}
 		else{
-			console.log(Orders.isActive(orderId));
-			return Orders.collection[orderId].items.push(product);
-		}
+			//not working TODO add amount to item if already in cart
+			var orderId = Orders.findActiveOrderId();
+			console.log("order exists ")
+			if(Orders.collection[orderId].items.length === 0){
+				console.log("items are empty")
+				return Orders.collection[orderId].items.push(product);
+			}
+			//only works for first item in cart
+			if(Orders.hasItem(orderId, product.id) === true){
+				for(let i = 0; i <= Orders.collection[orderId].items.length; i++){
+					if(Orders.collection[orderId].items[i].id === product.id){
+						console.log("product already in cart")
+						var db_amount = Orders.collection[orderId].items[i].amount;
+						var product_amount = product.amount;
+						var new_amount = db_amount + product_amount;
+						console.log("db_amount " + db_amount + " product_amount " + product_amount + " new_amount " + new_amount)
+						return Orders.collection[orderId].items[i].amount = new_amount;
+					}
+				}
+			}
+			
+			if(Orders.hasItem(orderId, product.id) === false){
+				console.log("product not yet in cart")
+				return Orders.collection[orderId].items.push(product);
 
+			}
+			
+		}
 	}	
 }
 
@@ -139,8 +170,14 @@ Orders.createOrder = (product) => {
 //update amount of product
 //Orders.updateProduct
 
-Orders.deleteProduct = (id, product) => {
-
+Orders.deleteProduct = (id, productId) => {
+	var array = Orders.collection[id].items;
+	for (let i = 0; i < array.length; i++) {
+		console.log(Orders.collection[id].items[i].id)
+		if(Orders.collection[id].items[i].id === productId){
+			Orders.collection[id].items.splice(i, 1);
+		}  	
+	}
 }
 
 Orders.deleteOrder = (id) => {
