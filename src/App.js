@@ -5,7 +5,7 @@ import Cart from './components/Cart/Cart.js';
 import Categories from './components/Categories/Categories.js';
 import ProductList from './components/ProductList/ProductList.js';
 import Products from './api/Products.js';
-import Orders from './api/Orders.js';
+//import Orders from './api/Orders.js';
 //import Nav from './Nav';
 //import Confirmation from './Confirmation';
 
@@ -29,14 +29,14 @@ if(isTestMode) {
       console.log("product: " + product.id + ", name: " + product.name);
     }
   }
-  if(Orders.isEmpty){
-    const orders = require('./api/order-data.json').orders;
-    for(let order of orders) {
-      Orders.insert(order);
-      console.log("order: " + order.id + ", name: " + order.name);
-    }
-  }
-  console.log(Orders.collection);
+  // if(Orders.isEmpty){
+  //   const orders = require('./api/order-data.json').orders;
+  //   for(let order of orders) {
+  //     Orders.insert(order);
+  //     console.log("order: " + order.id + ", name: " + order.name);
+  //   }
+  // }
+  // console.log(Orders.collection);
   console.log(Products.getAll());
   console.log(Products.getCategories());  
 }

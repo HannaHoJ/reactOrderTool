@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ProductList.css';
 import Products from './../../api/Products.js';
 import ProductItem from '../ProductItem/ProductItem.js';

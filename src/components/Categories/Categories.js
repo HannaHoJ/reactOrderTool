@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Categories.css';
 import Products from './../../api/Products.js';
-import ProductList from '../ProductList/ProductList.js';
+//import ProductList from '../ProductList/ProductList.js';
 
 //links to specific categories
 const Category = (props ) => {

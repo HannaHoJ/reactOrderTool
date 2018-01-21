@@ -12,7 +12,18 @@ class Cart extends Component {
 		this.getTotalItemPrice = this.getTotalItemPrice.bind(this)
 		this.getTotalCartPrice = this.getTotalCartPrice.bind(this)
 		this.getCartItems = this.getCartItems.bind(this);
+		//this.getCartState = this.getCartState.bind(this);
+		this.state = {
+			hasActiveOrder: Orders.hasActiveOrder(),
+		}
 	}
+
+
+	// getCartState = (active) => {
+	// 	this.setState({
+	// 		hasActiveOrder: active
+	// 	})
+	// }
 
 	getTotalItemPrice = (order) =>{
 		// const price = parseFloat(order.price.replace(",","."));
@@ -24,23 +35,25 @@ class Cart extends Component {
 
 	getTotalCartPrice = (orderItems) =>{
 		var totalCartPrice = orderItems.reduce((acc, curr) => {
-			return (this.getTotalItemPrice(acc) + this.getTotalItemPrice(curr));
+			return (this.getTotalItemPrice(acc) + this.getTotalItemPrice(curr.price));
 		});
 		return <span>{ totalCartPrice}</span>;
 	}
-
 
 	getCartItems=(orderItems)=>{
 		//console.log(order.items)
 
 		var cartItems = orderItems.map((item) => {
-					return <CartItem key={ item.id } orderedItem={ item } totalItemPrice={ this.getTotalItemPrice(item) } />
+					return <CartItem key={ item.id } name={ item.name } amount={ item.amount } price={ item.price } totalItemPrice={ this.getTotalItemPrice(item) } />
 				});
 		return <div>{ cartItems }</div>;
 	}
+
 	render() {
-		const order = Orders.getActiveOrder();
-		return (
+		if(this.state.hasActiveOrder){
+			const order = Orders.getActiveOrder();
+			console.log(order);
+			return (
 			//insert conditional rendering, what happens if cart is empty
 			<div>
 				{/* 
@@ -54,7 +67,11 @@ class Cart extends Component {
 				<div>Total: { this.getTotalCartPrice(order.items) } €</div>
 				<button type="submit" >Submit Order</button>
 			</div>
-		);
+			);
+		}else{
+			return (<div>Cart is empty!</div>)
+		}
+		
 	}
 }
 

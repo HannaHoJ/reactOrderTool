@@ -15,24 +15,3 @@ ReactDOM.render((
 	</Router>	
 	), document.getElementById('root'));
 registerServiceWorker();
-
-const isTestMode = true;
-if(isTestMode) {
-	if(Products.isEmpty()){
-		const products = require('./api/products-data.json').products;
-		for(let product of products) {
-			Products.insert(product);
-			console.log("product: " + product.id + ", name: " + product.name);
-		}
-	}
-	if(Orders.isEmpty){
-		const orders = require('./api/order-data.json').orders;
-		for(let order of orders) {
-			Orders.insert(order);
-			console.log("order: " + order.id + ", name: " + order.name);
-		}
-	}
-	console.log(Orders.collection);
-	console.log(Products.getAll());
-	console.log(Products.getCategories());	
-}

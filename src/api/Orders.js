@@ -43,7 +43,7 @@ Orders.isClosed = (id) =>{
 	return (Orders.collection[id].status === "closed")? true : false;
 }
 
-Orders.findActiveOrder = () => {
+Orders.findActiveOrderId = () => {
 	for(let order in Orders.collection){
 		if(Orders.isActive(order)){
 			return order;
@@ -51,6 +51,17 @@ Orders.findActiveOrder = () => {
 	}
 }
 
+
+Orders.hasActiveOrder = () => {
+	for(let order in Orders.collection){
+		if(Orders.isActive(order)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}
 Orders.existsActiveOrder = () => {
 	for(let order in Orders.collection){
 		return Orders.isActive(order);
@@ -68,18 +79,18 @@ Orders.getActiveOrder = () => {
 //one can add products with same key. should not be allowed, instead add the product amount to the existing key
 Orders.addProduct = (product) => {
 	if(Orders.isEmpty()){
-		Orders.createOrder(product);
+		return Orders.createOrder(product);
 	}
 	else{
-		var orderId = Orders.findActiveOrder();
+		var orderId = Orders.findActiveOrderId();
 		console.log(orderId);
 		if(!Orders.isActive(orderId)){
-			console.log(Orders.isActive(orderId));
-			Orders.createOrder(product);
+			console.log(Orders.isActive(orderId) + "no active order");
+			return Orders.createOrder(product);
 		}
 		else{
 			console.log(Orders.isActive(orderId));
-			Orders.collection[orderId].items.push(product);
+			return Orders.collection[orderId].items.push(product);
 		}
 
 	}	
