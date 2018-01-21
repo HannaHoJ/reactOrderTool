@@ -2,14 +2,14 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import './Categories.css';
 import Products from './../../api/Products.js';
-import ProductItem from '../ProductItem/ProductItem.js';
+import ProductList from '../ProductList/ProductList.js';
 
 //links to specific categories
 const Category = (props ) => {
 	return (
 		<CategoryList >	
 			<li> 
-				<Link to={`/categories/${props.value}`}> 
+				<Link to={`${props.match.url}/${props.value}`}> 
 					{ props.value } 
 				</Link>
 			</li>
@@ -39,6 +39,9 @@ const Categories = ({match}) =>{
 				return (<Category key={ item } value={ item } match={ match } />)
 			}) 
 		}	
+		{/* 
+			<Route exact path={`${match.url}/:product`} component={ProductList} /> 
+		 */}
 		</div>
 	)
 }

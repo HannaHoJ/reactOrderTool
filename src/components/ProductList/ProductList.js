@@ -6,25 +6,19 @@ import ProductItem from '../ProductItem/ProductItem.js';
 
 
 
-class ProductList extends Component {
-	constructor(props){
-		super(props);
-
-	}
-
-	render() {
-		return(
-		<div>
-			<div>{ this.props.match.params.product }</div>
-			{
-				Products.getProductsByCategory(this.props.match.params.product).map((item) => {
-					return <ProductItem key={ item.id } product={ item }  />
-				})
-			}
-		</div>
-		)
-	}
-	
+const ProductList = ({ match }) => {
+	return(
+	<div>
+		<div>{ match.params.product }</div>
+		{
+			Products.getProductsByCategory(match.params.product).map((item) => {
+				return <ProductItem key={ item.id } product={ item }  />
+			})
+		}
+	</div>
+	)
 }
+	
+
 
 export default ProductList

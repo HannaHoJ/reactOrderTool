@@ -66,11 +66,11 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/categories" component={Categories} />      
+              <Route exact path="/categories" component={Categories} />      
               <Route path="/categories/:product" component={ProductList} />        
              {/* JSX Comment */} 
             {/* cart has to be /:user/cart */}
-              <Route path="/cart" component={Cart} />
+              <Route exact path="/cart" component={Cart} />
               <Route component={NotFound} />
             </Switch>
             </div>
