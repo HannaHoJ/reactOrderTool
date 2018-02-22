@@ -17,14 +17,12 @@ class ProductItem extends Component {
 	}
 	
 	callback = (amountFromAmountSelector) => {
-			if(amountFromAmountSelector >= this.state.amount){
-				this.setState((prevState, props) => ({ 
-					amount: prevState.amount + 1
-				}))
-				console.log(this.state.amount);
-			}
-
-		 
+		if(amountFromAmountSelector >= this.state.amount){
+			this.setState((prevState, props) => ({ 
+				amount: prevState.amount + 1
+			}))
+			console.log(this.state.amount);
+		}		 
 	}
 
 	addToCart = () => {

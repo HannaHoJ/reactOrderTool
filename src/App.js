@@ -70,7 +70,7 @@ class App extends Component {
               <Route path="/categories/:product" component={ProductList} />        
              {/* JSX Comment */} 
             {/* cart has to be /:user/cart */}
-              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/order" component={Cart} />
               <Route component={NotFound} />
             </Switch>
             </div>
