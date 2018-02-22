@@ -1,10 +1,9 @@
 {
-  "name": "hello-world",
+  "name": "dietz-ordering-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "express": "^4.16.2",
-    "mongodb": "^3.0.2",
     "mongoose": "^5.0.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -14,6 +13,9 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd api && nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
