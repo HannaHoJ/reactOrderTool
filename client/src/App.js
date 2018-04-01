@@ -43,7 +43,25 @@ if(isTestMode) {
 
 //Main routing 
 class App extends Component {  
+  state = {
+    response: ''
+  } 
 
+  componentDidMount(){
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(e => console.log(e))
+  }
+
+  callApi = async () => {
+    const response = await fetch('/');
+    const body = await response.json();
+
+    if(response.status !== 200){
+      throw Error(body.message);
+    }
+    return body;
+  }
 
   render() {
     return (
@@ -70,7 +88,7 @@ class App extends Component {
               <Route path="/categories/:product" component={ProductList} />        
              {/* JSX Comment */} 
             {/* cart has to be /:user/cart */}
-              <Route exact path="/order" component={Cart} />
+              <Route exact path="/cart" component={Cart} />
               <Route component={NotFound} />
             </Switch>
             </div>
