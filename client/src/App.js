@@ -4,6 +4,7 @@ import { Link, Route, Switch, BrowserRouter as Router  } from 'react-router-dom'
 import Cart from './components/Cart/Cart.js';
 import Categories from './components/Categories/Categories.js';
 import ProductList from './components/ProductList/ProductList.js';
+import Home from './components/Home/Home.js';
 import Products from './api/Products.js';
 //import Orders from './api/Orders.js';
 //import Nav from './Nav';
@@ -13,11 +14,7 @@ const NotFound = () => (
   <h3>404.. This page is not found!</h3>
 )
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+
 
 
 const isTestMode = true;
@@ -43,25 +40,7 @@ if(isTestMode) {
 
 //Main routing 
 class App extends Component {  
-  state = {
-    response: ''
-  } 
 
-  componentDidMount(){
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(e => console.log(e))
-  }
-
-  callApi = async () => {
-    const response = await fetch('/');
-    const body = await response.json();
-
-    if(response.status !== 200){
-      throw Error(body.message);
-    }
-    return body;
-  }
 
   render() {
     return (

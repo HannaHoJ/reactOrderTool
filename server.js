@@ -12,7 +12,7 @@ require('./client/app/models/orders-server-model');
 //build the app
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -24,22 +24,21 @@ const errorHandler = (err, req, res, next) => {
 	res.render(err);
 }
 
-app.get('/', (req, res, next) =>{
-	res.send({ express: 'Hello From Express' });
-	next()
+app.get('/home', (req, res, next) =>{
+	res.json({ welcome: 'Willkommen im Hofladen Dietz' });
 })
 
-app.get('/categories', (req, res) =>{
+// app.get('/categories', (req, res) =>{
 
-})
+// })
 
-app.get('/categories/:product', (req, res) =>{
-	res.end("You can order " + req.params.product + ".");
-})
+// app.get('/categories/:product', (req, res) =>{
+// 	res.end("You can order " + req.params.product + ".");
+// })
 
-app.get('/cart', (req, res) => {
-	res.send({ express: 'Hello From Express' });
-})
+// app.get('/cart', (req, res) => {
+// 	res.send({ express: 'Hello From Express' });
+// })
 
 app.use((req, res)=>{
     res.sendStatus(404);
