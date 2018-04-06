@@ -29,6 +29,9 @@ class ProductItem extends Component {
 		var product = Products.getById(this.props.product.id);
 		product.amount = this.state.amount;
 		console.log("produdct " + product.id + " amount " + product.amount);
+		this.setState({
+			amount: 1
+		})
 		return Orders.addProduct(product);
 	}
 	//display simple product

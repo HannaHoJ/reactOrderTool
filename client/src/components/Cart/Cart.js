@@ -68,12 +68,12 @@ class Cart extends Component {
 				<div>Welcome to your cart { this.props.activeOrder.user.name }</div>
 				
 				*/}
-				<div>order: { order.id }</div>
-				<div>{ this.getCartItems(order.items) }</div>
-				<hr />
-				<div></div>
-				<div>Total: { this.getTotalCartPrice(order.items) } €</div>
-				<button type="submit" >Submit Order</button>
+					<div>order: { order.id }</div>
+					<div>{ this.getCartItems(order.items) }</div>
+					<hr />
+					<div></div>
+					<div>Total: { this.getTotalCartPrice(order.items) } €</div>
+					<button type="submit" >Submit Order</button>
 				</ul>
 			</div>
 			);

@@ -33,7 +33,7 @@ class CartItem extends Component {
 					<span>Anzahl: { this.props.amount }</span>{", "}
 					<span>Preis: { this.props.price/100 } €</span>{", "}
 					<div>Zwischensumme: { this.props.totalItemPrice } €</div>
-					<button type="submit" onClick={ this.deleteItem }>x</button>	
+					<button type="submit" onClick={ this.deleteItem }>&times;</button>	
 				</li>
 			</div>
 		);

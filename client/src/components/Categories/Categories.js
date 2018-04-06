@@ -46,9 +46,4 @@ const Categories = ({match}) =>{
 	)
 }
 
-
-
-
-
-
 export default Categories;
