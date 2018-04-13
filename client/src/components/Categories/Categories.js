@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './Categories.css';
 import Products from './../../api/Products.js';
 //import ProductList from '../ProductList/ProductList.js';
+import callApi from './../../api/methods/api.js'
+	
+
 
 //links to specific categories
 const Category = (props ) => {
@@ -34,7 +37,7 @@ const Categories = ({match}) =>{
 	
 	return (
 		<div>
-			{ 
+			{
 			Products.getCategories().map((item) =>{
 				return (<Category key={ item } value={ item } match={ match } />)
 			}) 

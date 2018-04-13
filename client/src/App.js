@@ -5,7 +5,7 @@ import Cart from './components/Cart/Cart.js';
 import Categories from './components/Categories/Categories.js';
 import ProductList from './components/ProductList/ProductList.js';
 import Home from './components/Home/Home.js';
-import Products from './api/Products.js';
+//import Products from './api/Products.js';
 //import Orders from './api/Orders.js';
 //import Nav from './Nav';
 //import Confirmation from './Confirmation';
@@ -17,26 +17,26 @@ const NotFound = () => (
 
 
 
-const isTestMode = true;
-if(isTestMode) {
-  if(Products.isEmpty()){
-    const products = require('./api/products-data.json').products;
-    for(let product of products) {
-      Products.insert(product);
-      console.log("product: " + product.id + ", name: " + product.name);
-    }
-  }
-  // if(Orders.isEmpty){
-  //   const orders = require('./api/order-data.json').orders;
-  //   for(let order of orders) {
-  //     Orders.insert(order);
-  //     console.log("order: " + order.id + ", name: " + order.name);
-  //   }
-  // }
-  // console.log(Orders.collection);
-  console.log(Products.getAll());
-  console.log(Products.getCategories());  
-}
+// const isTestMode = true;
+// if(isTestMode) {
+//   if(Products.isEmpty()){
+//     const products = require('./api/products-data.json').products;
+//     for(let product of products) {
+//       Products.insert(product);
+//       console.log("product: " + product.id + ", name: " + product.name);
+//     }
+//   }
+//   // if(Orders.isEmpty){
+//   //   const orders = require('./api/order-data.json').orders;
+//   //   for(let order of orders) {
+//   //     Orders.insert(order);
+//   //     console.log("order: " + order.id + ", name: " + order.name);
+//   //   }
+//   // }
+//   // console.log(Orders.collection);
+//   console.log(Products.getAll());
+//   console.log(Products.getCategories());  
+// }
 
 //Main routing 
 class App extends Component {  

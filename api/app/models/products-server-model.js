@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'); 
 var Schema = mongoose.Schema;
 
-var productSchema=new Schema({
+var ProductSchema=new Schema({
     id: String,
     name: String,
     //thumbnail: String,
@@ -18,6 +18,6 @@ var productSchema=new Schema({
     }
 });
 
-module.exports=mongoose.model('Product', productSchema);
+module.exports=mongoose.model('Product', ProductSchema);
 
 

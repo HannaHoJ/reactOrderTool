@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import callApi from './../../api/methods/api.js'
 
 export class Home extends Component {
 	state = {
@@ -6,21 +7,11 @@ export class Home extends Component {
   	}
 
 	componentDidMount(){
-		this.callApi()
+		callApi.getHome()
 		  	.then(res => this.setState({ response: res.welcome }))
 		  	.catch(e => console.log(e));
 	}
-
-	callApi = async () => {
-		const response = await fetch('/home');
-		const body = await response.json();
-
-		if(response.status !== 200){
-			throw Error(body.message);
-		}
-		return body;
-	}
-
+	
 	render() {
 		return (
 			<div>

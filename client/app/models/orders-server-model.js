@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'); 
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 //https://stackoverflow.com/questions/18859284/mongoose-custom-schema-types
 //var Product = require('./products-server-model');
@@ -20,12 +20,12 @@ var orderSchema = new Schema({
     statusType: String,
 
     //thumbnail: String,
-    category: String,
-    ingredients: String,
-    price: Number,
-    weight: String,
-    unit: String,
-    description: String,
+    // category: String,
+    // ingredients: String,
+    // price: Number,
+    // weight: String,
+    // unit: String,
+    // description: String,
     // user:{
     //	type: String,
     // 	ref: 'User',

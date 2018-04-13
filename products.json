@@ -1,0 +1,43 @@
+
+{
+
+	"name": "Roggenbrot",
+	"category": "Brot",
+	"ingredients": "Roggenmehl, Wasser, Sauerteig, Hefe, Salz, Pfeffer, Kümmel",
+	"price" : 400,
+	"weight" : "1000g",
+	"unit" : "piece",
+	"description" : "sehr saftiges, kerniges Brot"
+}
+{
+
+	"name": "Dinkelbrot",
+	"category": "Brot",
+	"ingredients": "Dinkelschrot, Dinkelmehl, Wasser, Sauerteig, Hefe, Salz, Pfeffer, Kümmel",
+	"price" : 500,
+	"weight" : "1000g",
+	"unit" : "piece",
+	"description" : "sehr bekömmliches Vollkornschrot"
+}
+{
+
+	"name": "Bauernbrot",
+	"category": "Brot",
+	"ingredients": "Roggenmehl, Weizenmehl, Wasser, Sauerteig, Hefe, Salz, Pfeffer, Kümmel",
+	"price" : 350,
+	"weight" : "1000g",
+	"unit" : "piece",
+	"description" : "der Klassiker! Passt zu allem"
+
+}
+{
+	"name": "Naturata Vollmilchschokolade",
+	"category": "Schokolade",
+	"ingredients": "Kakao min 30%, Kakaobutter, Milch, Magermilchpulver, Vanille",
+	"price" : 350,
+	"weight" : "100g",
+	"unit" : "piece",
+	"description" : "Fairtrade, aus der Schweiz und Bio"
+
+}
+
