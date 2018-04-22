@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Categories.css';
-import Products from './../../api/Products.js';
+//import Products from './../../api/Products.js';
 //import ProductList from '../ProductList/ProductList.js';
 import callApi from './../../api/methods/api.js'
 	
@@ -10,43 +10,56 @@ import callApi from './../../api/methods/api.js'
 //links to specific categories
 const Category = (props ) => {
 	return (
-		<CategoryList >	
 			<li> 
 				<Link to={`${props.match.url}/${props.value}`}> 
 					{ props.value } 
 				</Link>
 			</li>
-		</CategoryList>
+
 	);	
 }
 
-//composition of components to pass children elements (category) in their
-const CategoryList = (props) =>{
-	return(
-		<div>
-			<ul>
-				{ props.children }
-			</ul>
-		</div>
-	)
-}
+
+class Categories extends Component {
+	constructor(props){
+		super(props)
+		this.state ={
+			categories: []
+		}
+		this.getCategories = this.getCategories.bind(this);
+	}
+
+	componentDidMount(){
+		console.log(this.props.match.url);
+		callApi.getContent(this.props.match.url)
+		  	.then(res => {
+		  		console.log(res.categories);
+		  		this.setState({ categories: res.categories });
+		  		console.log(this.state.categories);
+		  	})
+		  	.catch(e => console.error(this.props.url, e.toString()));
+	}
 
 
-//call function in react js
-const Categories = ({match}) =>{
-	
-	return (
-		<div>
-			{
-			Products.getCategories().map((item) =>{
-				return (<Category key={ item } value={ item } match={ match } />)
-			}) 
-		}	
-		{/* 
-			<Route exact path={`${match.url}/:product`} component={ProductList} /> 
-		 */}
-		</div>
-	)
+	getCategories = (categories) => {
+		console.log(categories);
+		const array = categories.map((item) =>{
+			return (<Category key={ item } value={ item } match={ this.props.match } />)
+		})
+		return array;
+	}
+
+	render() {
+		return (
+			<div>
+				<ul>
+					{ this.getCategories(this.state.categories) }
+				</ul>
+			</div>
+		);
+	}
+
 }
+
 
 export default Categories;

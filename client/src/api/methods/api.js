@@ -1,25 +1,36 @@
-
+/*
+Service for clients to access the MongoDB Atlas web APIs
+*/
 
 const callApi = {
-	'getHome': async function(){
-		const response = await fetch('/home');
-		const body = await response.json();
+	'getContent': async function(url){
+		try{
+			const response = await fetch(url);
+			const body = await response.json();
+			console.log(response)
+			console.log(body);
+			if(response.status !== 200){
+				throw Error(response.message);
+			}
+			return body;
+		}catch(e){
+			console.error(url, e.toString())
 
-		if(response.status !== 200){
-			throw Error(body.message);
 		}
-		return body;
+		
+	
 	},
 
-	'getCategories': async function(){
-		const response = await fetch('/categories');
-		const body = await response.json();
-		if(response.status !== 200){
-			throw Error(body.message);
-		}
-		return body;
-	},
 		
 }
 
 export default callApi;
+
+// export default class callApi{
+// 	constructor(url){
+// 		this.baseURL = url;
+// 		this.MongoDBURI = "";
+
+// 	}
+
+// }

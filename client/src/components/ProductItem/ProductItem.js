@@ -43,7 +43,7 @@ class ProductItem extends Component {
 					<div>{ this.props.product.description }</div>
 					<div>{ this.props.product.ingredients } </div>
 					<div>{ this.props.product.price/100 } €</div>
-					<div>{ this.props.product.weight } { this.props.product.unit }</div>
+					<div>{ this.props.product.unit }: { this.props.product.weight } </div>
 				{/* callback from child component to have access to product amount in parent component */}
 					<ErrorBoundary>
 						<AmountSelector productId={ this.props.product.id } callback={this.callback} />

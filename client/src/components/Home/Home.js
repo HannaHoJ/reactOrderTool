@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import callApi from './../../api/methods/api.js'
 
 export class Home extends Component {
-	state = {
-    	response: ''
-  	}
+	constructor(props){
+		super(props)
+		this.state = {
+    		response: ''
+  		}
+	}
+	
 
 	componentDidMount(){
-		callApi.getHome()
+		console.log(this.props.match);
+		// callApi.getContent(this.props.match.url)
+		//   	.then(res => this.setState({ response: res.welcome }))
+		//   	.catch(e => console.error(this.props.url, e.toString()));
+		const apiUri = "http://localhost:3001/"
+		callApi.getContent(apiUri)
 		  	.then(res => this.setState({ response: res.welcome }))
-		  	.catch(e => console.log(e));
+		  	.catch(e => console.error(this.props.url, e.toString()));
 	}
 	
 	render() {

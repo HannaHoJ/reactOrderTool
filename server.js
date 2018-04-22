@@ -17,15 +17,23 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 const Products = require('./api/app/models/products-server-model.js');
-require('./api/app/models/orders-server-model.js');
+const Orders = require('./api/app/models/orders-server-model.js');
 
 //build the app
 const app = express();
 
 const port = process.env.PORT || 3001;
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(function(req, res, next) { 
+	res.header("Access-Control-Allow-Origin", "*"); 
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+	next(); 
+});
+
 
 const errorHandler = (err, req, res, next) => {
 	console.error(err.message);
@@ -34,19 +42,20 @@ const errorHandler = (err, req, res, next) => {
 	res.render(err);
 }
 
-app.get('/home', (req, res, next) =>{
-	res.json({ welcome: 'Willkommen im Hofladen Dietz' });
+app.get('/', (req, res, next) =>{
+	res.json({welcome: 'Willkommen im Hofladen Dietz' });
 })
 
 
-app.get('/categories', (req, res,next) =>{
+
+
+app.get('/categories', (req, res, next) =>{
 	console.log('categories')
 	Products.find({})
 	  	.select('category')
 	  	.exec(function getCategory(err, docs){
-	  		
+	  		const array = [];
 			if(docs){
-				const array = [];
 				docs.forEach(function(doc){
 					var item = doc.category;
 					if(!array.includes(item)){
@@ -54,9 +63,8 @@ app.get('/categories', (req, res,next) =>{
 					} 
 				})
 				console.log(array);
-				res.send({ getCategory: 'Brot'})
 			}
-			//res.send(array);
+			res.json({categories: array });
 			if(err){
 				console.log(fail)
 				//if (err) return next(new Error('Failed to get Category'));
@@ -66,9 +74,29 @@ app.get('/categories', (req, res,next) =>{
 
 })
 
-// app.get('/categories/:product', (req, res) =>{
-// 	res.end("You can order " + req.params.product + ".");
-// })
+app.get('/categories/:product', (req, res, next) =>{
+	const category = req.params.product
+	const array = [];
+	//console.log('products ' + category)
+	Products.find({ "category": category})
+		//.select('name')
+	  	.exec(function getProducts(err, docs){
+			if(docs){
+				docs.forEach(function(doc){
+					console.log(doc)
+					array.push(doc);
+					
+				})
+				console.log(array);
+			}
+			res.json({products: array });
+			if(err){
+				console.log(fail)
+				//if (err) return next(new Error('Failed to get Category'));
+			}
+			
+	  	});
+})
 
 // app.get('/cart', (req, res) => {
 // 	res.send({ express: 'Hello From Express' });
