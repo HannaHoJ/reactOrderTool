@@ -5,27 +5,14 @@ var mongoose = require('mongoose'),
 //var Product = require('./products-server-model');
 
 
-var itemSchema = new Schema({
-	id: String,
-	name: String,
-	price: Number,
-	weight: String,
-	unit: String,
-	amount: Number
-});
-
+// var itemSchema = new Schema({
+	
+	
+// });
 
 var orderSchema = new Schema({
    	id: String,
     statusType: String,
-
-    //thumbnail: String,
-    // category: String,
-    // ingredients: String,
-    // price: Number,
-    // weight: String,
-    // unit: String,
-    // description: String,
     // user:{
     //	type: String,
     // 	ref: 'User',
@@ -36,7 +23,16 @@ var orderSchema = new Schema({
         type: Date,
         default: Date.now
         },
-    items: [itemSchema],
+    items: [{
+        id: String,
+        name: String,
+        price: Number,
+        //thumbnail: String,
+        weight: String,
+        unit: String,
+        amount: Number
+    }],
 });
-module.exports=mongoose.model('Item', itemSchema);
-module.exports=mongoose.model('Order', orderSchema);
+
+//module.exports=mongoose.model('Item', itemSchema);
+module.exports=mongoose.model('Orders', orderSchema);

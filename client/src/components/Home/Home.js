@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import callApi from './../../api/methods/api.js'
 
-export class Home extends Component {
+
+class Home extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
     		response: ''
   		}
 	}
-	
 
 	componentDidMount(){
 		console.log(this.props.match);

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Categories.css';
-//import Products from './../../api/Products.js';
-//import ProductList from '../ProductList/ProductList.js';
 import callApi from './../../api/methods/api.js'
 	
 
@@ -30,19 +28,18 @@ class Categories extends Component {
 	}
 
 	componentDidMount(){
-		console.log(this.props.match.url);
-		callApi.getContent(this.props.match.url)
+		// console.log(this.props.match.url);
+		const url = "/categories" || this.props.match.url
+		callApi.getContent(url)
 		  	.then(res => {
 		  		console.log(res.categories);
 		  		this.setState({ categories: res.categories });
-		  		console.log(this.state.categories);
+		  		//console.log(this.state.categories);
 		  	})
 		  	.catch(e => console.error(this.props.url, e.toString()));
 	}
 
-
 	getCategories = (categories) => {
-		console.log(categories);
 		const array = categories.map((item) =>{
 			return (<Category key={ item } value={ item } match={ this.props.match } />)
 		})

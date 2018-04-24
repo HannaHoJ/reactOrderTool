@@ -1,5 +1,6 @@
+
 /*
-Service for clients to access the MongoDB Atlas web APIs
+API calls to server
 */
 
 const callApi = {
@@ -15,22 +16,8 @@ const callApi = {
 			return body;
 		}catch(e){
 			console.error(url, e.toString())
-
 		}
-		
-	
 	},
-
-		
 }
 
 export default callApi;
-
-// export default class callApi{
-// 	constructor(url){
-// 		this.baseURL = url;
-// 		this.MongoDBURI = "";
-
-// 	}
-
-// }
