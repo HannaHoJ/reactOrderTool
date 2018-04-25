@@ -38,8 +38,8 @@ const productMiddleware = require('./server/routes/product-routes.js');
 productMiddleware(app);
 
 //Middleware for Orders
-// const orderMiddleware = require('./server/routes/order-routes.js');
-// orderMiddleware(app);
+const orderMiddleware = require('./server/routes/order-routes.js');
+orderMiddleware(app);
 
 app.use((req, res, next)=>{
     res.sendStatus(404);

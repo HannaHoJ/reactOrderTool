@@ -25,7 +25,7 @@ class ProductList extends Component {
 
 	getProducts = (products) => {
 		const productArray = products.map((item) => {
-				return <ProductItem key={ item._id } product={ item }  />
+				return <ProductItem key={ item._id } product={ item } url={this.props.match.url} />
 			})
 		return productArray;
 	}

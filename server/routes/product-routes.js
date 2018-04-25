@@ -1,5 +1,5 @@
 const Products = require('./../models/products-server-model.js');
-const Orders = require('./../models/orders-server-model.js');
+
 
 module.exports = (app) => { 
 	app.get('/', (req, res, next) =>{
@@ -32,23 +32,18 @@ module.exports = (app) => {
 	app.get('/categories/:product', (req, res, next) =>{
 		const category = req.params.product
 		const array = [];
-		//console.log('products ' + category)
 		Products.find({ "category": category})
 			//.select('name')
 		  	.exec(function getProducts(err, docs){
 				if(docs){
 					docs.forEach(function(doc){
-						console.log(doc)
 						array.push(doc);
-						
 					})
-					console.log(array);
 				}
 				res.json({products: array });
 				if(err){
 					return next(new Error('Failed to get Category'));
 				}
-				
 		  	});
 	})
 

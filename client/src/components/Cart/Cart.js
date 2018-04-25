@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Cart.css';
 import CartItem from '../CartItem/CartItem.js';
 import Orders from './../../api/Orders.js';
-
+import callApi from './../../api/methods/api.js'
 
 
 class Cart extends Component {
@@ -16,7 +16,17 @@ class Cart extends Component {
 		this.state = {
 			hasActiveOrder: Orders.hasActiveOrder(),
 			updateOrder: false,
+			orders: []
 		}
+	}
+
+	componentWillMount(){
+		callApi.getContent(this.props.match.url)
+			.then(res => {
+				this.setState({ orders: res.orders })
+				console.log(this.state.orders)
+			})
+			.catch(e => console.error(this.props.url, e.toString()));
 	}
 
 	getTotalItemPrice = (order) =>{
