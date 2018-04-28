@@ -34,7 +34,7 @@ module.exports = (app) => {
 		const array = [];
 		Products.find({ "category": category})
 			//.select('name')
-		  	.exec(function getProducts(err, docs){
+		  	.exec((err, docs) =>{
 				if(docs){
 					docs.forEach(function(doc){
 						array.push(doc);

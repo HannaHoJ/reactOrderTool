@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CartItem.css';
-import Orders from './../../api/Orders.js';
-
+//import Orders from './../../api/Orders.js';
+import callApi from './../../api/methods/api.js'
 
 class CartItem extends Component {
 	constructor(props){
@@ -9,18 +9,29 @@ class CartItem extends Component {
 
 		this.deleteItem = this.deleteItem.bind(this);
 		this.state={
-			orderUpdate: false
+			order: {},
+			updateCart: false
 		}
 
 	}
 
+
+
 	deleteItem = () => {
-		const order = Orders.getActiveOrder();
-		this.setState({
-			orderUpdate: true
-		})
-		this.props.callback(this.state.orderUpdate);
-		return Orders.deleteProduct(order.id, this.props.id);
+		const url = this.props.url;
+		const orderId = this.props.orderId;
+		const itemId = this.props.item._id;
+		callApi.deleteItem(url, orderId, itemId)
+	  	.then((res) => {
+	  		console.log(res.order);
+	  		this.setState({
+	  			updateCart: true,
+				order: res.order
+			})
+			this.props.callback(this.state.updateCart);
+	  	})
+	  	.catch(e => console.error(this.props.url, e.toString()));
+
 	}
 
 	render() {
@@ -28,10 +39,10 @@ class CartItem extends Component {
 			<div>
 				<li>
 					<hr/>
-					<span>Name: { this.props.name }</span>{", "}
+					<span>Name: { this.props.item.name }</span>{", "}
 				{/* <span>Kategorie: { this.props.orderedItem.category }</span>{", "} */}
-					<span>Anzahl: { this.props.amount }</span>{", "}
-					<span>Preis: { this.props.price/100 } €</span>{", "}
+					<span>Anzahl: { this.props.item.amount }</span>{", "}
+					<span>Preis: { this.props.item.price/100 } €</span>{", "}
 					<div>Zwischensumme: { this.props.totalItemPrice } €</div>
 					<button type="submit" onClick={ this.deleteItem }>&times;</button>	
 				</li>

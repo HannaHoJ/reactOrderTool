@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Cart.css';
 import CartItem from '../CartItem/CartItem.js';
-import Orders from './../../api/Orders.js';
+//import Orders from './../../api/Orders.js';
 import callApi from './../../api/methods/api.js'
 
 
@@ -14,17 +14,22 @@ class Cart extends Component {
 		this.getCartItems = this.getCartItems.bind(this);
 		//this.getCartState = this.getCartState.bind(this);
 		this.state = {
-			hasActiveOrder: Orders.hasActiveOrder(),
-			updateOrder: false,
-			orders: []
+			hasActiveOrder: false,
+			updateCart: false,
+			order: {}
 		}
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		callApi.getContent(this.props.match.url)
 			.then(res => {
-				this.setState({ orders: res.orders })
-				console.log(this.state.orders)
+				this.setState({ order: res.orders })
+				const order = this.state.order;
+				if(Object.keys(order).length !== 0){
+					this.setState({ hasActiveOrder: true })
+				}
+				console.log(this.state.order)
+				console.log(this.state.hasActiveOrder)
 			})
 			.catch(e => console.error(this.props.url, e.toString()));
 	}
@@ -36,9 +41,9 @@ class Cart extends Component {
 	}
 
 
-	callback = (updateOrder) => {
+	callback = (updateCart) => {
 		this.setState({
-			updateOrder: updateOrder,
+			updateCart: updateCart,
 		})
 	}
 
@@ -54,22 +59,20 @@ class Cart extends Component {
 		//console.log(order.items)
 		var cartItems = orderItems.map((item) => {
 			return <CartItem 
-				key={ item.id } 
-				id={ item.id } 
-				name={ item.name } 
-				amount={ item.amount } 
-				price={ item.price } 
+				key={ item._id } 
+				orderId={ this.state.order._id }
+				item={ item }
 				totalItemPrice={ this.getTotalItemPrice(item) }
+				url={this.props.match.url}
 				callback = { this.callback } />
 
 		});
 		return <div>{ cartItems }</div>;
 	}
-
+	//convert order array to object
 	render() {
 		if(this.state.hasActiveOrder){
-			const order = Orders.getActiveOrder();
-			console.log(order);
+			console.log(this.state.order._id);
 			return (
 			//insert conditional rendering, what happens if cart is empty
 			<div>
@@ -78,11 +81,11 @@ class Cart extends Component {
 				<div>Welcome to your cart { this.props.activeOrder.user.name }</div>
 				
 				*/}
-					<div>order: { order.id }</div>
-					<div>{ this.getCartItems(order.items) }</div>
+					<div>order: { this.state.order._id }</div>
+					<div>{ this.getCartItems(this.state.order.items) }</div>
 					<hr />
 					<div></div>
-					<div>Total: { this.getTotalCartPrice(order.items) } €</div>
+					<div>Total: { this.getTotalCartPrice(this.state.order.items) } €</div>
 					<button type="submit" >Submit Order</button>
 				</ul>
 			</div>

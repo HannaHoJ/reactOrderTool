@@ -34,15 +34,16 @@ module.exports = (app) => {
 	app.get('/cart', (req, res, next) => {
 		const category = req.params.product
 		const array = [];
-		Orders.find({ "statusType": "active"})
+		Orders.findOne({ "statusType": "active"})
 			//.select('name')
-		  	.exec(function getProducts(err, docs){
-				if(docs){
-					docs.forEach(function(doc){
-						array.push(doc);
-					})
-				}
-				res.json({orders: array });
+			.lean()
+		  	.exec((err, doc) => {
+		  		if(doc !== null){
+		  			res.json({orders: doc });
+		  		}else{
+		  			res.json({orders: {} });
+		  		}
+				
 				if(err){
 					return next(new Error('Failed to get Category'));
 				}
@@ -51,6 +52,19 @@ module.exports = (app) => {
 
 	app.delete('/cart', (req, res, next) => {
 		
+		const orderId = req.body.orderId;
+		console.log(orderId);
+		Orders.findOne({ "_id": req.body.orderId })
+			.exec((err,doc) => {
+				console.log(doc)
+				let item = doc.items.id(req.body.itemId).remove();
+				doc.save()
+					.catch((err) => next(err));
+				res.json({order: doc });
+				if(err){
+					return next(new Error('Failed removing item'));
+				}
+			})
 	})
 
 	app.delete('/cart', (req, res, next) => {

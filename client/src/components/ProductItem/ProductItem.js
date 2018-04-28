@@ -29,21 +29,26 @@ class ProductItem extends Component {
 	}
 
 	addToCart = () => {
+		const url = this.props.url
 		const product = this.props.product;
 		product.amount = this.state.amount;
 		console.log("produdct " + product._id + " amount " + product.amount);
 		this.setState({
 			amount: 1
 		})
-		callApi.postItem(this.props.url, product)
-		  	.then(json => {
-		  		let data = this.state.order;
-		  		data.push(json);
-		  		this.setState({
-		  			order: data
-		  		});
-		  	})
-		  	.catch(e => console.error(this.props.url, e.toString()));
+
+		callApi.postItem(url, product)
+	  	.then(json => {
+	  		let data = this.state.order;
+	  		data.push(json);
+	  		this.setState({
+	  			order: data
+	  		});
+	  	})
+	  	.catch(e => console.error(this.props.url, e.toString()));
+
+		
+		
 	}
 	//display simple product
 	render() {
